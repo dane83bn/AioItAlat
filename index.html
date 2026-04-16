@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaNe AIO Alat</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #2d2d2d;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 { color: #4DA8DA; margin-top: 0; }
+        p { color: #cccccc; margin-bottom: 20px; line-height: 1.5; }
+        .code-box {
+            background-color: #000000;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: Consolas, monospace;
+            color: #00ff00;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+            border: 1px solid #444;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4DA8DA;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+        button:hover { background-color: #3182b6; }
+        button:active { background-color: #215c82; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ DaNe AIO Alat v11.1</h1>
+        <p>Ovo je alat za terensku instalaciju i optimizaciju računara. Kliknite na dugme ispod da kopirate komandu, a zatim je zalijepite (Desni klik ili Ctrl+V) u običan Command Prompt (CMD) i pritisnite Enter.</p>
+        
+        <div class="code-box">curl -sL "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -o "%TEMP%\DaneAIOtool.bat" ^&^& "%TEMP%\DaneAIOtool.bat"</div>
+        
+        <button onclick="copyCommand()" id="copyBtn">📋 Kopiraj Komandu</button>
+    </div>
+
+    <script>
+        function copyCommand() {
+            // Ovdje se cuva tacna komanda koja ide u radnu memoriju
+            const cmdText = 'curl -sL "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -o "%TEMP%\\DaneAIOtool.bat" && "%TEMP%\\DaneAIOtool.bat"';
+            
+            navigator.clipboard.writeText(cmdText).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.innerText = '✔️ Uspješno Kopirano!';
+                btn.style.backgroundColor = '#28a745';
+                
+                // Vraca dugme u normalu nakon 3 sekunde
+                setTimeout(() => {
+                    btn.innerText = '📋 Kopiraj Komandu';
+                    btn.style.backgroundColor = '#4DA8DA';
+                }, 3000);
+            }).catch(err => {
+                alert('Greška pri kopiranju, pokušajte ručno označiti tekst.');
+            });
+        }
+    </script>
+</body>
+</html>
