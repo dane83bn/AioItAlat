@@ -58,15 +58,15 @@
         <h1>🛠️ DaNe AIO Alat v11.1</h1>
         <p>Ovo je alat za terensku instalaciju i optimizaciju računara. Kliknite na dugme ispod da kopirate komandu, a zatim je zalijepite (Desni klik ili Ctrl+V) u <b>Windows PowerShell</b> i pritisnite Enter.</p>
         
-        <div class="code-box">irm "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/DaneAIOtool.bat" -OutFile "$env:TEMP\DaneAIOtool.bat"; &amp; "$env:TEMP\DaneAIOtool.bat"</div>
+        <div class="code-box">irm "https://gist.githubusercontent.com/dane83bn/5d93173dd8aa4800ff10859e1273a9fb/raw/gistfile1.txt?nocache=$([guid]::NewGuid())" -OutFile "$env:TEMP\DaneAIOtool.bat"; &amp; "$env:TEMP\DaneAIOtool.bat"</div>
         
         <button onclick="copyCommand()" id="copyBtn">📋 Kopiraj Komandu</button>
     </div>
 
     <script>
         function copyCommand() {
-            // URL bez hasha - uvijek povlači posljednju verziju (Latest)
-            const cmdText = 'irm "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/DaneAIOtool.bat" -OutFile "$env:TEMP\\DaneAIOtool.bat"; & "$env:TEMP\\DaneAIOtool.bat"';
+            // Komanda povezana sa novim Gist-om i nocache bypass-om
+            const cmdText = 'irm "https://gist.githubusercontent.com/dane83bn/5d93173dd8aa4800ff10859e1273a9fb/raw/gistfile1.txt?nocache=$([guid]::NewGuid())" -OutFile "$env:TEMP\\DaneAIOtool.bat"; & "$env:TEMP\\DaneAIOtool.bat"';
             
             navigator.clipboard.writeText(cmdText).then(() => {
                 const btn = document.getElementById('copyBtn');
