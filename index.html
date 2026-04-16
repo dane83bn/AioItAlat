@@ -22,7 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             text-align: center;
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
         }
         h1 { color: #4DA8DA; margin-top: 0; }
@@ -56,24 +56,23 @@
 <body>
     <div class="container">
         <h1>🛠️ DaNe AIO Alat v11.1</h1>
-        <p>Ovo je alat za terensku instalaciju i optimizaciju računara. Kliknite na dugme ispod da kopirate komandu, a zatim je zalijepite (Desni klik ili Ctrl+V) u običan Command Prompt (CMD) i pritisnite Enter.</p>
+        <p>Ovo je alat za terensku instalaciju i optimizaciju računara. Kliknite na dugme ispod da kopirate komandu, a zatim je zalijepite (Desni klik ili Ctrl+V) u <b>Windows PowerShell</b> i pritisnite Enter.</p>
         
-        <div class="code-box">curl -sL "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -o "%TEMP%\DaneAIOtool.bat" ^&^& "%TEMP%\DaneAIOtool.bat"</div>
+        <div class="code-box">irm "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -OutFile "$env:TEMP\DaneAIOtool.bat"; &amp; "$env:TEMP\DaneAIOtool.bat"</div>
         
         <button onclick="copyCommand()" id="copyBtn">📋 Kopiraj Komandu</button>
     </div>
 
     <script>
         function copyCommand() {
-            // Ovdje se cuva tacna komanda koja ide u radnu memoriju
-            const cmdText = 'curl -sL "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -o "%TEMP%\\DaneAIOtool.bat" && "%TEMP%\\DaneAIOtool.bat"';
+            // Nova PowerShell komanda
+            const cmdText = 'irm "https://gist.githubusercontent.com/dane83bn/0120ef6bd16691c26b7cad46e0131b6d/raw/2e8e52cf1eb4d19164dcef63c74f0e58beb267f6/DaneAIOtool.bat" -OutFile "$env:TEMP\\DaneAIOtool.bat"; & "$env:TEMP\\DaneAIOtool.bat"';
             
             navigator.clipboard.writeText(cmdText).then(() => {
                 const btn = document.getElementById('copyBtn');
                 btn.innerText = '✔️ Uspješno Kopirano!';
                 btn.style.backgroundColor = '#28a745';
                 
-                // Vraca dugme u normalu nakon 3 sekunde
                 setTimeout(() => {
                     btn.innerText = '📋 Kopiraj Komandu';
                     btn.style.backgroundColor = '#4DA8DA';
