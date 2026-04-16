@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DaNe AIO Alat</title>
+    <title>DaNe AIO Alat - Secured</title>
     <style>
         body {
             background-color: #1e1e1e;
@@ -27,6 +27,31 @@
         }
         h1 { color: #4DA8DA; margin-top: 0; }
         p { color: #cccccc; margin-bottom: 20px; line-height: 1.5; }
+        
+        /* Podesavanja za PIN ekran */
+        #pinScreen input {
+            padding: 10px;
+            font-size: 20px;
+            width: 150px;
+            text-align: center;
+            letter-spacing: 5px;
+            border-radius: 5px;
+            border: 2px solid #444;
+            background-color: #111;
+            color: #00ff00;
+            margin-bottom: 15px;
+        }
+        #errorMsg {
+            color: #ff4d4d;
+            font-weight: bold;
+            display: none;
+            margin-bottom: 10px;
+        }
+        
+        /* Podesavanja za glavni alat */
+        #mainTool {
+            display: none; /* Sakriveno po defaultu */
+        }
         .code-box {
             background-color: #000000;
             padding: 15px;
@@ -54,7 +79,17 @@
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <div class="container" id="pinScreen">
+        <h1>🔒 Zaštićen Pristup</h1>
+        <p>Unesite PIN kod za pristup terenskim alatima.</p>
+        <input type="password" id="pinInput" placeholder="PIN" onkeypress="handleEnter(event)">
+        <br>
+        <p id="errorMsg">Pogrešan PIN kod!</p>
+        <button onclick="checkPin()">Otključaj</button>
+    </div>
+
+    <div class="container" id="mainTool">
         <h1>🛠️ DaNe AIO Alat v11.1</h1>
         <p>Ovo je alat za terensku instalaciju i optimizaciju računara. Kliknite na dugme ispod da kopirate komandu, a zatim je zalijepite (Desni klik ili Ctrl+V) u <b>Windows PowerShell</b> i pritisnite Enter.</p>
         
@@ -64,8 +99,31 @@
     </div>
 
     <script>
+        // OVDJE PROMIJENI SVOJ PIN KOD
+        const tacanPIN = "filip";
+
+        function checkPin() {
+            const unesenPIN = document.getElementById('pinInput').value;
+            
+            if (unesenPIN === tacanPIN) {
+                // Ako je tacno, sakrij PIN ekran i prikazi alat
+                document.getElementById('pinScreen').style.display = 'none';
+                document.getElementById('mainTool').style.display = 'block';
+            } else {
+                // Ako je pogresno, prikazi gresku i ocisti polje
+                document.getElementById('errorMsg').style.display = 'block';
+                document.getElementById('pinInput').value = '';
+            }
+        }
+
+        // Omogucava otkljucavanje pritiskom na Enter na tastaturi
+        function handleEnter(e) {
+            if(e.key === 'Enter') {
+                checkPin();
+            }
+        }
+
         function copyCommand() {
-            // Komanda povezana sa novim Gist-om i nocache bypass-om
             const cmdText = 'irm "https://gist.githubusercontent.com/dane83bn/5d93173dd8aa4800ff10859e1273a9fb/raw/gistfile1.txt?nocache=$([guid]::NewGuid())" -OutFile "$env:TEMP\\DaneAIOtool.bat"; & "$env:TEMP\\DaneAIOtool.bat"';
             
             navigator.clipboard.writeText(cmdText).then(() => {
