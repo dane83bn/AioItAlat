@@ -1,0 +1,2 @@
+# .bat mora imati Windows (CRLF) prelome redova, inace goto/call skokovi znaju zakazati
+*.bat -text
